@@ -1,0 +1,224 @@
+<form class="main" id="form" >
+  <h1  class="main_banner_text" style="color: rgb(0 0 0);">Cieszymy się że chcesz być z nami</h1>
+  <div class="register_left">
+    <div style="margin-right: 70px;">
+      <input id="administrationRadio" name="check" type="radio" value="true" [(ngModel)]="checkHotel">Administracja hotelu
+    </div>
+    <table id="adminTable" style="border-spacing: 0 15px;">
+      <tr>
+        <td>
+          <label for="nazwa">Nazwa:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="nazwa" name="nazwa" type="text" [(ngModel)]="hotel.name"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="nazwaError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="miasto">Miasto:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <select id="miasto" size="1" name="Wybierz miasto" [(ngModel)]="hotel.idCity">
+              <option *ngFor="let city of cities | async" value="{{city.idCity}}">{{city.cityName}}</option>
+            </select>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="cityError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="ulica">Ulica:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="ulica" name="ulica" type="text" placeholder="Np. Okrzei 70" [(ngModel)]="hotel.address"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="ulicaError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="klasa">Klasa:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="klasa" name="klasa" type="number" placeholder="1-5" [(ngModel)]="hotel.classStar"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="classError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="parking1">Parking:</label>
+        </td>
+        <td style="text-align: left;">
+          <span id="parking" style="display: inline-block">
+              <input id="parking1" name="parking" type="radio" value="Y" [(ngModel)]="hotel.parking"> Tak
+              <input id="parking2" name="parking" type="radio" value="F" [(ngModel)]="hotel.parking"> Nie
+          </span>
+        <div style="color: red; display: inline;">*</div>
+        </td>
+        <td>
+          <span id="parkingError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <label for="loginA">Login:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="loginA" name="loginA" type="text" [(ngModel)]="passwordHotel.login"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="loginAError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="hasloA">Hasło:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="hasloA" name="hasloA" type="password" [(ngModel)]="passwordHotel.password"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="passAError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <span id="sumErrorA"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="register_right">
+    <div>
+      <input id="userRadio" name="check" type="radio" checked="checked">Użytkownik
+    </div>
+    <table id="userTable" style="border-spacing: 0 15px;">
+      <tr>
+        <td>
+          <label style="text-align: right;" for="imie">Imię:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="imie" name="imie" type="text" [(ngModel)]="user.name"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="nameError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="nazwisko">Nazwisko:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="nazwisko" name="nazwisko" type="text" [(ngModel)]="user.surname"/>
+            <div style="color: red">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="surnameError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="data">Data Ur.:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="data" name="dataUr" type="date" style="width: 167px;" [(ngModel)]="user.birthDate"/>
+            <div style="color: red">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="dateError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="telefon">Telefon:</label>
+        </td>
+        <td style="text-align: left;">
+          <input id="telefon" name="tel" type="number" placeholder="Np. 999999999" [(ngModel)]="user.phone"/>
+        </td>
+        <td>
+          <span id="phoneError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <label for="loginB">Login:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="loginB" name="loginB" type="text" [(ngModel)]="passwordUser.login"/>
+            <div style="color: red">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="loginBError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="hasloB">Hasło:</label>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="hasloB" name="hasloB" type="password" [(ngModel)]="passwordUser.password"/>
+            <div style="color: red">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="passBError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <span id="sumErrorB"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="login_text">
+    <button class="button" (click)="submitFun()" type="submit" >Zarejestruj</button>
+    <p style="margin-top: 20px; margin-bottom: 0;">Masz już konto?</p>
+    <a routerLink="/login">Zaloguj się!</a>
+  </div>
+</form>

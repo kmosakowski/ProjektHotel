@@ -1,0 +1,122 @@
+<div class="main">
+  <div class="main_banner"></div>
+  <div class="main_banner_text">
+    <h1>
+      Przeglądaj swoje rezerwacje
+    </h1>
+    <p style="font-size: 18px;">
+      Jesteśmy najlepszą wyszukiwarką pokoi hotelowych. Zapewniamy najlepszą jakość usług oraz pewność dobrego i słusznego wyboru.
+      Sprawdz co oferujemy i jak możemy Ci pomóc w dobraniu najlepiej dopasowanego pokoju dla Ciebie.
+    </p>
+  </div>
+  <form class="main_left">
+    <h3 style="margin-bottom: 30px;">Filtruj</h3>
+    <div class="search_hotel">
+      <label for="miasto">Miasto:</label>
+      <select id="miasto" size="1" name="Wybierz miasto" [(ngModel)]="filter.cityId">
+        <option *ngFor="let city of cities | async" value="{{city.idCity}}">{{city.cityName}}</option>
+      </select>
+    </div>
+    <div class="search_hotel">
+      <label for="hotel">Wybierz hotel:</label>
+      <select id="hotel" size="3" name="Wybierz hotel" [(ngModel)]="filter.hotelId">
+        <option *ngFor="let hotel of hotels | async" value="{{hotel.idHotel}}">{{hotel.name}}</option>
+      </select>
+    </div>
+    <div class="search_hotel">
+      <label for="date" style="margin-top: 15%;">Wybierz datę</label>
+      <input id="date" name="date" type="date" [(ngModel)]="filter.chosenDate">
+    </div>
+    <button class="button" type="button" style="width: fit-content; margin-left: 60px;" (click)="showRooms()">Filtruj</button>
+  </form>
+  <div class="centerPOPUP">
+    <div id="popup" class="popup">
+      <div style="display: flex; flex-direction: row;">
+        <h4 style="margin-right: 30px;">Pokój Nr. {{room.roomNumber}}</h4>
+        <h4 style="margin-left: 30px;">Klasa pokoju: {{room.clazz}}</h4>
+      </div>
+      <form id="form">
+        <table id="detailsTable">
+          <tr>
+            <td>
+              <p>Od kiedy</p>
+            </td>
+            <td>
+              <input id="odKiedy" name="odKiedy" type="date" value='{{reservation["fromDate"]}}' [(ngModel)]="term.fromDate"/>
+            </td>
+            <td>
+              <span id="odError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Do kiedy</p>
+            </td>
+            <td>
+              <input id="doKiedy" name="doKiedy" type="date" value='{{reservation["toDate"]}}' [(ngModel)]="term.toDate"/>
+            </td>
+            <td>
+              <span id="doError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Dodatkowe uwagi:</p>
+            </td>
+            <td>
+              <textarea id="dodatkoweInfo" name="opis" rows="4" cols="20" value='{{reservation["comments"]}}' [(ngModel)]="term.comments"></textarea>
+            </td>
+            <td>
+              <span id="dodatkoweError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <span id="sumError"></span>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <div>
+        <button (click)="changeTerm()" class="button" type="button" style="margin-right: 3px;" >Zmień</button>
+        <button (click)="closePopWindow()" class="button" type="button" style="margin-right: 3px;" >Zamknij</button>
+      </div>
+    </div>
+  </div>
+  <div class="main_right">
+    <table id="tab1">
+      <tr>
+        <th>Wybór</th>
+        <th>Termin</th>
+        <th>Klasa pokoju</th>
+        <th>Piętro</th>
+        <th>Opis</th>
+      </tr>
+      <tr *ngFor="let room of pageOfItems" (click)="selectRoom($event, room);">
+        <td>
+          <input id="check" name="check" type="radio" value="true">
+        </td>
+        <td>
+          <p>{{room.fromDate}} - <br>{{room.toDate}}</p>
+        </td>
+        <td>
+          <p>{{room.clazz}}</p>
+        </td>
+        <td>
+          <p>{{room.floor}}</p>
+        </td>
+        <td>
+          <p>{{room.description}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <jw-pagination [items]="rooms" [pageSize]="5" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+    <div style="margin-top: 20px; margin-right: 10px; display: flex; flex-direction: row;">
+      <button (click)="detailsRooms()" class="button" type="button" style="margin-right: 5px">Pokaż szczegóły</button>
+      <button class="button" (click)="cancelReservation()" style="margin-right: 5px">Anuluj rezerwację</button>
+      <button (click)="openPopWindow()" class="button" type="button" style="margin-right: 35px">Zmień termin</button>
+    </div>
+  </div>
+</div>

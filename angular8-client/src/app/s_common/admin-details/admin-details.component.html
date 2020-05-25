@@ -1,0 +1,47 @@
+<main class="main">
+  <div class="main_left">
+    <span *ngFor="let hotel of hotels">
+      <h3 >Id: {{hotel.idHotel}}</h3>
+      <table >
+        <tr>
+          <td>
+            <p>Hotel:</p>
+          </td>
+          <td>
+            <p>{{hotel.name}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Klasa Hotelu:</p>
+          </td>
+          <td>
+            <p>{{hotel.classStar}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Adres:</p>
+          </td>
+          <td>
+            <p>{{hotel.address}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Parking:</p>
+          </td>
+          <td>
+            <p *ngIf="hotel.parking == 'N'; else elseBack">NIE</p>
+            <ng-template #elseBack>
+              <p>TAK</p>
+            </ng-template>
+          </td>
+        </tr>
+      </table>
+    </span>
+  </div>
+  <div class="bottom">
+    <button (click)="backClicked()" class="button" type="button" style="margin-right: 3px;" >Wstecz</button>
+  </div>
+</main>

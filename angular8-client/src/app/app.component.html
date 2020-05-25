@@ -1,0 +1,39 @@
+<header class="header">
+  <div id="user" class="header_user">
+    <h5 *ngIf="globalVar.nameUser === undefined">Niezalogowany</h5>
+    <h5 *ngIf="globalVar.nameUser != undefined">{{globalVar.nameUser}}</h5>
+  </div>
+  <div id="sciezka" class="header_path">
+    <h5 *ngIf="globalVar.nameUser === undefined">Strona główna</h5>
+    <ng-container>
+      <a *ngIf="globalVar.typeUser == 'GUEST'" routerLink="indexUser"><h5>Strona główna</h5></a>
+      <a *ngIf="globalVar.typeUser == 'HOTEL'" routerLink="indexHotel"><h5>Strona główna</h5></a>
+    </ng-container>
+
+  </div>
+  <div id="logo" class="header_logo">
+    <img src="../assets/images/logo.png" alt="{{logoName}}" style="width: auto; height: 24px;">
+  </div>
+  <div id="przyciski" class="header_button">
+    <div  *ngIf="globalVar.typeUser === undefined">
+      <button class="button" type="button" routerLink="registration" style="margin-left: 3px; margin-right: 5px;">Zarejestruj</button>
+      <button class="button" type="button" routerLink="login" style="margin-right: 3px;">Zaloguj</button>
+    </div>
+    <div  *ngIf="globalVar.typeUser == 'GUEST'">
+      <button class="button" type="button" routerLink="indexUser/reservation" style="margin-left: 3px; margin-right: 5px;">Zarządzaj rezerwacjami</button>
+      <button class="button" type="button" routerLink="" style="margin-right: 3px;">Wyloguj</button>
+    </div>
+    <div  *ngIf="globalVar.typeUser == 'HOTEL'">
+      <button class="button" type="button" routerLink="indexHotel/reservation" style="margin-left: 3px; margin-right: 5px;">Menadżer rezerwacji</button>
+      <button class="button" type="button" routerLink="" style="margin-right: 3px;">Wyloguj</button>
+    </div>
+  </div>
+</header>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <p class="footer_text">
+    Masz problemy ze stroną?&nbsp;<a routerLink="badsite">Skontaktuj się z nami!</a>
+  </p>
+</footer>

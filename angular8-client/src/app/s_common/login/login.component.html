@@ -1,0 +1,18 @@
+<div class="main">
+  <h1 class="main_banner_text" style="color: rgb(0 0 0);">Miło Cię znów widzieć</h1>
+  <form class="login">
+    <div class="login_box">
+      <label for="login">Login:</label>
+      <input id="login" name="imie" type="text" [(ngModel)]="password.login"/>
+    </div>
+    <div class="login_box">
+      <label for="hasloB">Hasło:</label>
+      <input id="hasloB" name="imie" type="password" [(ngModel)]="password.password"/>
+    </div>
+    <button class="button" type="submit" style="margin-top: 15px;" (click)="submitFun()">Zaloguj</button>
+  </form>
+  <div class="register_text">
+    <p style="margin-bottom: 0;">Nie masz jeszcze konta?</p>
+    <a routerLink="/registration">Zarejestruj się!</a>
+  </div>
+</div>

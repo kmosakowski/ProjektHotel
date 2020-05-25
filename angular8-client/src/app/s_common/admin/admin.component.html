@@ -1,0 +1,163 @@
+<div class="main">
+  <div class="main_banner"></div>
+  <div class="main_banner_text">
+    <h1>
+      Panel Administracyjny użytkowników
+    </h1>
+  </div>
+  <div class="main_left">
+    <div class="search_hotel">
+      <label style="margin: 1%; margin-top: 33px;">Lista Hoteli:</label>
+    </div>
+    <table id="tab2">
+      <tr>
+        <th>Wybór</th>
+        <th>Nazwa</th>
+        <th>Adress</th>
+        <th>Klasa</th>
+      </tr>
+      <tr *ngFor="let hotel of pageOfHotel" (click)="selectHotel($event, hotel);">
+        <td>
+          <input id="check" name="check" type="radio" value="true">
+        </td>
+        <td>
+          <p>{{hotel.name}}</p>
+        </td>
+        <td>
+          <p>{{hotel.address}}</p>
+        </td>
+        <td>
+          <p>{{hotel.classStar}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <jw-pagination [items]="hotels" [pageSize]="5" (changePage)="onChangePageHotel($event)"></jw-pagination>
+    </div>
+    <div>
+      <button (click)="editHotel()" class="button" type="button" style="margin-right: 100px;">Edytuj</button>
+      <button (click)="detailsHotel()" class="button" type="button" style="margin-right: 100px;">Szczegóły</button>
+      <button (click)="deleteHotel()" class="button" type="button">Usuń</button>
+    </div>
+  </div>
+  <div class="centerPOPUP">
+    <div id="popup" class="popup">
+      <form id="form">
+        <table id="hoteReservTable">
+          <ng-container *ngIf="optionExecute == 1">
+            <tr>
+              <td>
+                <label style="text-align: right;" for="imie">Nazwa</label>
+              </td>
+              <td>
+                <input id="imie" name="imie" type="text" value="{{hotel.name}}" [(ngModel)]="hotel.name"/>
+              </td>
+              <td>
+                <span id="nameError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr style="background-color: white">
+              <td>
+                <label for="nazwisko">Adress</label>
+              </td>
+              <td>
+                <input id="nazwisko" name="nazwisko" type="text" value="{{hotel.address}}" [(ngModel)]="hotel.address"/>
+              </td>
+              <td>
+                <span id="surnameError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="data">Klasa</label>
+              </td>
+              <td>
+                <input id="data" name="dataUr" type="number" style="width: 167px;" value="{{hotel.classStar}}" [(ngModel)]="hotel.classStar"/>
+              </td>
+              <td>
+                <span id="dateError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="optionExecute == 2">
+            <tr>
+              <td>
+                <p>Imie</p>
+              </td>
+              <td>
+                <input id="odKiedy" name="Imie" type="text" value="{{user.name}}" [(ngModel)]="user.name"/>
+              </td>
+              <td>
+                <span id="odError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr style="background-color: white">
+              <td>
+                <p>Nazwisko</p>
+              </td>
+              <td>
+                <input id="surname" name="Nazwisko" type="text" value="{{user.surname}}" [(ngModel)]="user.surname"/>
+              </td>
+              <td>
+                <span id="doError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Data Urodzin</p>
+              </td>
+              <td>
+                <input id="birthDate" name="birthDate" type="date" value="{{user.birthDate}}" [(ngModel)]="user.birthDate"/>
+              </td>
+              <td>
+                <span id="dodatkoweError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <span id="sumError"></span>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+        <div>
+          <button (click)="execute()" class="button" type="button" style="margin-right: 3px;" >Zmień</button>
+          <button (click)="closePopWindow()" class="button" type="button" style="margin-right: 3px;" >Zamknij</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="main_right">
+    <label style="margin-right: 140px;">Lista użytkowników:</label>
+    <table id="tab1" style="max-width: 500px;">
+      <tr>
+        <th>Wybór</th>
+        <th>Imie</th>
+        <th>Nazwisko</th>
+        <th>Data Urodzenia</th>
+      </tr>
+      <tr *ngFor="let user of pageOfUser" (click)="selectUser($event, user);">
+        <td>
+          <input id="check2" name="check" type="radio" value="true">
+        </td>
+        <td>
+          <p>{{user.name}}</p>
+        </td>
+        <td>
+          <p>{{user.surname}}</p>
+        </td>
+        <td>
+          <p>{{user.birthDate}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <jw-pagination [items]="users" [pageSize]="5" (changePage)="onChangePageUser($event)"></jw-pagination>
+    </div>
+    <div>
+      <button class="button" (click)="editUser()" style="margin-top: 10px; margin-right: 150px;">Edytuj</button>
+      <button (click)="detailsUser()" class="button" type="button" style="margin-right: 100px;">Szczegóły</button>
+      <button (click)="deleteUser()" class="button" type="button">Usuń</button>
+    </div>
+  </div>
+</div>

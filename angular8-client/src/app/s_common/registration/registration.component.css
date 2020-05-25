@@ -1,0 +1,38 @@
+.main_banner_text {
+  grid-column: 1 / 4;
+  grid-row: 1 / 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.login_text {
+  grid-column: 2;
+  grid-row: 3;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.register_left{
+  grid-column: 1;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  align-items: flex-end;
+}
+
+.register_right{
+  grid-column: 3;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px;
+}
+
+td {
+  text-align: right;
+}

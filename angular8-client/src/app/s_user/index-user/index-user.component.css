@@ -1,0 +1,53 @@
+.main_center{
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  max-height: 30px;
+}
+
+.main_right{
+  grid-column: 3;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1%;
+}
+
+.main_left{
+  grid-column: 1;
+  grid-row: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1%;
+}
+
+.search_hotel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+  margin-left: 2%;
+  max-width: 170px;
+}
+
+td, th {
+  padding: 5px;
+}
+
+#check{
+  width: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+input, select {
+  width: 200px;
+}
+
+.selected{background-color:#B0BED9}

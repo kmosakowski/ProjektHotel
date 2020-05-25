@@ -1,0 +1,57 @@
+<main class="main">
+  <div class="main_banner"></div>
+  <div class="main_banner_text">
+    <h1>
+      Cieszymy się że chcesz być z nami
+    </h1>
+    <p style="font-size: 18px;">
+      Jesteśmy najlepszą wyszukiwarką pokoi hotelowych. Zapewniamy najlepszą jakość usług oraz pewność dobrego i słusznego wyboru.
+      Sprawdz co oferujemy i jak możemy Ci pomóc w dobraniu najlepiej dopasowanego pokoju dla Ciebie.
+    </p>
+  </div>
+  <div class="main_center">
+    <h2>Zacznij przeglądać!</h2>
+  </div>
+  <form class="main_left">
+    <h3 style="margin-bottom: 15%;">Zacznij Tutaj</h3>
+    <div class="search_hotel">
+      <label for="miasto">Wybierz miasto:</label>
+      <select id="miasto" size="1" name="Wybierz miasto" [(ngModel)]="filter.cityId">
+          <option *ngFor="let city of cities | async" value="{{city.idCity}}">{{city.cityName}}</option>
+      </select>
+    </div>
+    <div class="search_hotel">
+      <label for="hotel">Wybierz hotel:</label>
+      <select id="hotel" size="3" name="Wybierz hotel" [(ngModel)]="filter.hotelId">
+        <option *ngFor="let hotel of hotels | async" value="{{hotel.idHotel}}">{{hotel.name}}</option>
+      </select>
+    </div>
+    <button class="button" type="button" style="display: flex; justify-content: center;" (click)="showRooms()">Pokaż!</button>
+  </form>
+  <div class="main_right">
+    <table id="tab1">
+      <tr>
+        <th>Klasa pokoju</th>
+        <th>Piętro</th>
+        <th>Opis</th>
+      </tr>
+      <tr *ngFor="let room of pageOfItems">
+        <td>
+          <p>{{room.clazz}}</p>
+        </td>
+        <td>
+          <p>{{room.floor}}</p>
+        </td>
+        <td>
+          <p>{{room.description}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <jw-pagination [items]="rooms" [pageSize]="5" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+    <p class="txt_uTable">
+      Aby móc zarezerwować pokój Zaloguj się lub zarejestruj. Możesz także zadzwonić na naszą infolinie <strong>(+48)555-555-555</strong>
+    </p>
+  </div>
+</main>

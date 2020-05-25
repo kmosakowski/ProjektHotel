@@ -1,0 +1,28 @@
+.main_banner_text {
+  grid-column: 1 / 4;
+  grid-row: 1 / 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.login {
+  grid-column: 2;
+  grid-row: 2;
+  text-align: center;
+}
+
+.login_box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.register_text {
+  grid-column: 2;
+  grid-row: 3;
+  text-align: center;
+  white-space: nowrap;
+}

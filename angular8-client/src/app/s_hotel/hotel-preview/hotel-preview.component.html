@@ -1,0 +1,137 @@
+<main class="main">
+  <div class="main_left">
+    <table id="addTable">
+      <tr>
+        <td>
+          <p>Numer Pokoju</p>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="nrPokoju" name="nrPokoju" type="number" value="{{rooms[0]['roomNumber']}}" [(ngModel)]="roomLocal.roomNumber"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="pokujError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Hotel</p>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="hotel" name="hotel" type="text" value="{{globalVar.nameUser}}"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="hotelError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Klasa Pokoju:</p>
+        </td>
+        <td>
+          <span id="classPlace">
+              <input id="class1" name="class" type="radio" value="B. Niska" [checked]="true" [(ngModel)]="roomLocal.clazz"> *
+              <input id="class2" name="class" type="radio" value="Niska" [checked]="true" [(ngModel)]="roomLocal.clazz"> **
+              <input id="class3" name="class" type="radio" value="Srednia" [checked]="true" [(ngModel)]="roomLocal.clazz"> ***
+              <input id="class4" name="class" type="radio" value="Wysoka" [checked]="true" [(ngModel)]="roomLocal.clazz"> ****
+              <input id="class5" name="class" type="radio" value="B. Wysoka" [checked]="true" [(ngModel)]="roomLocal.clazz"> *****
+          </span>
+          <div style="color: red; display: inline;">*</div>
+        </td>
+        <td>
+          <span id="classError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Piętro:</p>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="pietro" name="hotel" type="number" value="{{rooms[0]['floor']}}" [(ngModel)]="roomLocal.floor"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="pietroError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Dla palących:</p>
+        </td>
+        <td>
+          <span id="smoke">
+              <input id="smoke1" name="smoke" type="radio" value="Y" [checked]="true" [(ngModel)]="roomLocal.isSmoker"> Tak
+              <input id="smoke2" name="smoke" type="radio" value="N" [checked]="true" [(ngModel)]="roomLocal.isSmoker"> Nie
+          </span>
+          <div style="color: red; display: inline;">*</div>
+        </td>
+        <td>
+          <span id="smokeError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Dla niepełnosprawnych:</p>
+        </td>
+        <td>
+          <span id="disable">
+              <input id="disable1" name="disable" type="radio" value="Y" [checked]="true" [(ngModel)]="roomLocal.forDisabled"> Tak
+              <input id="disable2" name="disable" type="radio" value="N" [checked]="true" [(ngModel)]="roomLocal.forDisabled"> Nie
+          </span>
+          <div style="color: red; display: inline;">*</div>
+        </td>
+        <td>
+          <span id="disableError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Cena:</p>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: row;">
+            <input id="cena" name="cena" type="number" value="{{rooms[0]['price']}}" [(ngModel)]="roomLocal.price"/>
+            <div style="color: red;">*</div>
+          </div>
+        </td>
+        <td>
+          <span id="cenaError" style="text-align: left; color: red;"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <span id="sumErrorAdd"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="picture">
+    <h3 style="margin-bottom: 7px;">
+      Dodaj zdjęcia
+    </h3>
+    <input id="sciezka_jpg" name="sciezka" type="text" placeholder="NazwaPliku.jpg" value="{{photo[0][0]['name']}}" [(ngModel)]="photoLocal.name">
+  </div>
+<!--  <div class="right">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--  </div>-->
+  <div class="bottom">
+    <h3 style="margin-bottom: 7px;">
+      Opis
+    </h3>
+    <textarea id="opis" name="opis" rows="10" cols="30" [(ngModel)]="roomLocal.description">{{rooms[0]['description']}}</textarea>
+    <div>
+      <button class="button" type="button" style="margin-right: 3px;" (click)="backClicked()">Wstecz</button>
+      <button class="button" (click)="updateRoom()" type="button" style="margin-right: 3px;">Zapis</button>
+    </div>
+  </div>
+</main>

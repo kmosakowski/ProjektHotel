@@ -1,0 +1,40 @@
+.main_center{
+  grid-column: span 3;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.main_right{
+  grid-column: 3;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1%;
+}
+
+.main_left{
+  grid-column: 1;
+  grid-row: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+}
+
+.search_hotel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+td, th {
+  padding: 5px;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

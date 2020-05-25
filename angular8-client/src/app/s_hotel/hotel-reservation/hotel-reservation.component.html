@@ -1,0 +1,167 @@
+<div class="main">
+  <div class="main_banner"></div>
+  <div class="main_banner_text">
+    <h1>
+      Cieszymy się że chcesz być z nami
+    </h1>
+    <p style="font-size: 18px;">
+      Wybierz co chciałbyś zrobić z menu po prawej stronie. Tutaj masz aktualne pokoje którymi możesz zarządzać.
+    </p>
+  </div>
+  <div class="main_left">
+    <div class="search_hotel">
+      <label style="margin: 1%; margin-top: 33px;">Lista dostępnych pokoi:</label>
+    </div>
+    <table id="tab2">
+      <tr>
+        <th>Wybór</th>
+        <th>Klasa pokoju</th>
+        <th>Piętro</th>
+        <th>Opis</th>
+      </tr>
+      <tr *ngFor="let room of rooms | async" (click)="selectRoom($event, room);">
+        <td>
+          <input id="check" name="check" type="radio" value="true">
+        </td>
+        <td>
+          <p>{{room.clazz}}</p>
+        </td>
+        <td>
+          <p>{{room.floor}}</p>
+        </td>
+        <td>
+          <p>{{room.description}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <button (click)="createTerm()" class="button" type="button" style="margin-right: 350px;">Zarezerwuj</button>
+      <button class="button" type="button" routerLink="addRoom">Dodaj</button>
+    </div>
+  </div>
+  <div class="centerPOPUP">
+    <div id="popup" class="popup">
+      <form id="form">
+        <table id="hoteReservTable">
+          <ng-container *ngIf="optionExecute == 1">
+            <tr>
+              <td>
+                <label style="text-align: right;" for="imie">Imię:</label>
+              </td>
+              <td>
+                <input id="imie" name="imie" type="text" [(ngModel)]="guest.name"/>
+              </td>
+              <td>
+                <span id="nameError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr style="background-color: white">
+              <td>
+                <label for="nazwisko">Nazwisko:</label>
+              </td>
+              <td>
+                <input id="nazwisko" name="nazwisko" type="text" [(ngModel)]="guest.surname"/>
+              </td>
+              <td>
+                <span id="surnameError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="data">Data Ur.:</label>
+              </td>
+              <td>
+                <input id="data" name="dataUr" type="date" style="width: 167px;" [(ngModel)]="guest.birthDate"/>
+              </td>
+              <td>
+                <span id="dateError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+            <tr style="background-color: white">
+              <td>
+                <label for="telefon">Telefon:</label>
+              </td>
+              <td>
+                <input id="telefon" name="tel" type="number" placeholder="Np. 999999999" [(ngModel)]="guest.phone"/>
+              </td>
+              <td>
+                <span id="phoneError" style="text-align: left; color: red;"></span>
+              </td>
+            </tr>
+          </ng-container>
+          <tr>
+            <td>
+              <p>Od kiedy</p>
+            </td>
+            <td>
+              <input id="odKiedy" name="odKiedy" type="date" value="{{reservationD.fromDate.substr(0, 10)}}" [(ngModel)]="reservation.fromDate"/>
+            </td>
+            <td>
+              <span id="odError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr style="background-color: white">
+            <td>
+              <p>Do kiedy</p>
+            </td>
+            <td>
+              <input id="doKiedy" name="doKiedy" type="date" value="{{reservationD.toDate.substr(0, 10)}}" [(ngModel)]="reservation.toDate"/>
+            </td>
+            <td>
+              <span id="doError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Dodatkowe uwagi:</p>
+            </td>
+            <td>
+              <textarea id="dodatkoweInfo" name="opis" rows="4" cols="20" value="{{reservationD.comments}}" [(ngModel)]="reservation.comments">Tutaj wprowadź opis</textarea>
+            </td>
+            <td>
+              <span id="dodatkoweError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <span id="sumError"></span>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <button (click)="execute()" class="button" type="button" style="margin-right: 3px;" >Potwierdź</button>
+          <button (click)="closePopWindow()" class="button" type="button" style="margin-right: 3px;" >Zamknij</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="main_right">
+    <label style="margin-right: 140px;">Lista zarezerwowanych pokoi:</label>
+    <table id="tab1" style="max-width: 500px;">
+      <tr>
+        <th>Wybór</th>
+        <th>ID Pokoju</th>
+        <th>Przez kogo</th>
+        <th>Okres</th>
+      </tr>
+      <tr *ngFor="let reservationDetail of reservationDetails | async" (click)="selectReservation($event, reservationDetail);">
+        <td>
+          <input id="check2" name="check" type="radio" value="true">
+        </td>
+        <td>
+          <p>{{reservationDetail.idRoom}}</p>
+        </td>
+        <td>
+          <p>{{reservationDetail.name}} {{reservationDetail.surname}}</p>
+        </td>
+        <td>
+          <p>{{reservationDetail.fromDate.substr(0, 10)}}<br>do<br>{{reservationDetail.toDate.substr(0, 10)}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <button class="button" (click)="cancelReservation()" style="margin-top: 10px; margin-right: 150px;">Anuluj rezerwację</button>
+      <button (click)="changeTerm()" class="button" type="button">Zmień termin</button>
+    </div>
+  </div>
+</div>

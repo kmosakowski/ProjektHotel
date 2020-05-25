@@ -1,0 +1,84 @@
+<main class="main">
+  <div class="main_left">
+    <h3>Pokoj nr: {{rooms[0]['roomNumber']}}</h3>
+    <table>
+      <tr>
+        <td>
+          <p>Hotel</p>
+        </td>
+        <td>
+          <p>{{hotel[0]['name']}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Klasa Pokoju:</p>
+        </td>
+        <td>
+          <p>{{rooms[0]['clazz']}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Piętro:</p>
+        </td>
+        <td>
+          <p>{{rooms[0]['floor']}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Dla palących:</p>
+        </td>
+        <td>
+          <p *ngIf="rooms[0]['isSmoker'] == 'N'; else elseBack1">NIE</p>
+          <ng-template #elseBack1>
+            <p>TAK</p>
+          </ng-template>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Dla niepełnosprawnych:</p>
+        </td>
+        <td>
+          <p *ngIf="rooms[0]['forDisabled'] == 'N'; else elseBack">NIE</p>
+          <ng-template #elseBack>
+            <p>TAK</p>
+          </ng-template>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Cena:</p>
+        </td>
+        <td>
+          <p>{{rooms[0]['price']}}zł</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+<!--  TODO:Przetestować rozwiązanie-->
+  <div class="right_up">
+    <img *ngIf="photo[0][0]['path'] != undefined; else elseBack2" src="{{photo[0][0]['path']}}" alt="Logo" style="width: auto; width: 400px;">
+    <ng-template #elseBack2>
+      <img src="../../assets/images/roomsImage/Brak.jpg" alt="Logo" style="width: auto; width: 400px;">
+    </ng-template>
+  </div>
+<!--  TODO:Usunąć niepotrzebne fragmenty-->
+<!--  <div class="right">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--    <img src="../resource/images/logo.png" alt="Logo" style="width: auto; width: 100px;">-->
+<!--  </div>-->
+  <div class="bottom">
+    <h3 style="margin-bottom: 7px;">
+      Opis
+    </h3>
+    <p>{{rooms[0]['description']}}</p>
+    <div>
+      <button class="button" type="button" style="margin-right: 3px;" (click)="backClicked()">Wstecz</button>
+    </div>
+  </div>
+</main>

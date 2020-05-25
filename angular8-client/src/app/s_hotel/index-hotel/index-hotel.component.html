@@ -1,0 +1,46 @@
+<div class="main">
+  <div class="main_banner"></div>
+  <div class="main_banner_text">
+    <h1 style="color: white">
+      Witaj w panelu swojego hotelu
+    </h1>
+    <p style="color: white">
+      Wybierz co chciałbyś zrobic. Tutaj masz aktualne pokoje którymi możesz zarządzać.
+    </p>
+  </div>
+  <div class="main_center">
+    <div style="display: flex; flex-direction: row;">
+      <label style="white-space: nowrap; margin-right: 200px;">Lista pokoi:</label>
+      <button style="margin-left: 150px;" class="button" type="button" routerLink="addRoom">Dodaj</button>
+    </div>
+    <table id="tab1">
+      <tr>
+        <th>Wybór</th>
+        <th>Klasa pokoju</th>
+        <th>Piętro</th>
+        <th>Opis</th>
+      </tr>
+      <tr *ngFor="let room of pageOfItems" (click)="selectRoom($event, room);">
+        <td>
+          <input id="check" name="check" type="radio" value="true">
+        </td>
+        <td>
+          <p>{{room.clazz}}</p>
+        </td>
+        <td>
+          <p>{{room.floor}}</p>
+        </td>
+        <td>
+          <p>{{room.description}}</p>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <jw-pagination [items]="rooms" [pageSize]="5" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+    <div style="white-space: nowrap; margin-top: 4px; margin-right: 4px; margin-left: 3px;">
+      <button (click)="detailsRooms()" style="margin-right: 150px;" class="button" type="button">Edytuj</button>
+      <button style="margin-left: 150px;" class="button" type="button" (click)="delRoom()">Usuń</button>
+    </div>
+  </div>
+</div>

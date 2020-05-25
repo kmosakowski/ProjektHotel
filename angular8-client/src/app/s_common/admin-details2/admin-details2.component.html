@@ -1,0 +1,44 @@
+<main class="main">
+  <div class="main_left">
+    <span *ngFor="let user of users">
+      <h3 >Id: {{user.idGuest}}</h3>
+      <table >
+        <tr>
+          <td>
+            <p>Imie</p>
+          </td>
+          <td>
+            <p>{{user.name}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Nazwisko:</p>
+          </td>
+          <td>
+            <p>{{user.surname}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Data Ur.:</p>
+          </td>
+          <td>
+            <p>{{user.birthDate}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Telefon:</p>
+          </td>
+          <td>
+            <p>{{user.phone}}</p>
+          </td>
+        </tr>
+      </table>
+    </span>
+  </div>
+  <div class="bottom">
+    <button (click)="backClicked()" class="button" type="button" style="margin-right: 3px;" >Wstecz</button>
+  </div>
+</main>

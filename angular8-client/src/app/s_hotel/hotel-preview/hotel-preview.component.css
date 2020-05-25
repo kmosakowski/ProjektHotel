@@ -1,0 +1,90 @@
+.bottom{
+  grid-column: span 3;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 1%;
+}
+
+.main_left{
+  grid-column: 1;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  max-width: 400px;
+}
+
+.right_up{
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+.right {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+.picture {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 250px;
+  margin: 10px;
+}
+
+.prog {
+  padding: 3px;
+  border: 1px solid #ccc;
+  background: #eee;
+  border-radius: 3px;
+}
+
+.prog > .progBar {
+  border-radius: 3px;
+  background: #444;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+#table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table td, #table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(80, 80, 80);
+  color: white;
+}

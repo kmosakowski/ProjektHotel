@@ -1,0 +1,125 @@
+<main class="main">
+  <div class="main_left">
+    <h3>Pokoj nr: {{rooms[0]['roomNumber']}}</h3>
+    <table>
+      <tr>
+        <td>
+          <p>Hotel</p>
+        </td>
+        <td>
+          <p>{{hotel[0]['name']}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Klasa Pokoju:</p>
+        </td>
+        <td>
+          <p>{{rooms[0]['clazz']}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Piętro:</p>
+        </td>
+        <td>
+          <p>{{rooms[0]['floor']}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Dla palących:</p>
+        </td>
+        <td>
+          <p *ngIf="rooms[0]['isSmoker'] == 'N'; else elseBack1">NIE</p>
+          <ng-template #elseBack1>
+            <p>TAK</p>
+          </ng-template>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Dla niepełnosprawnych:</p>
+        </td>
+        <td>
+          <p *ngIf="rooms[0]['forDisabled'] == 'N'; else elseBack">NIE</p>
+          <ng-template #elseBack>
+            <p>TAK</p>
+          </ng-template>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Cena:</p>
+        </td>
+        <td>
+          <p>{{rooms[0]['price']}}zł</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="right_up">
+    <img src="{{this.photo[0][0]['path']}}" alt="Logo" style="width: auto; width: 400px;">
+  </div>
+  <div class="centerPOPUP">
+    <div id="popup" class="popup">
+      <div style="display: flex; flex-direction: row;">
+        <h4 style="margin-right: 30px;">Pokój numer {{rooms[0]['roomNumber']}}</h4>
+        <h4 style="margin-left: 30px;">Klasa pokoju {{rooms[0]['clazz']}}</h4>
+      </div>
+      <form id="form">
+        <table id="detailsTable">
+          <tr>
+            <td>
+              <p>Od kiedy</p>
+            </td>
+            <td>
+              <input id="odKiedy" name="odKiedy" type="date" [(ngModel)]="reservation.fromDate"/>
+            </td>
+            <td>
+              <span id="odError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Do kiedy</p>
+            </td>
+            <td>
+              <input id="doKiedy" name="doKiedy" type="date" [(ngModel)]="reservation.toDate"/>
+            </td>
+            <td>
+              <span id="doError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Dodatkowe uwagi:</p>
+            </td>
+            <td>
+              <textarea id="dodatkoweInfo" name="opis" rows="4" cols="20" [(ngModel)]="reservation.comment">Tutaj wprowadź opis</textarea>
+            </td>
+            <td>
+              <span id="dodatkoweError" style="text-align: left; color: red;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <span id="sumError"></span>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <div>
+        <button (click)="reserve()" class="button" type="button" style="margin-right: 3px;" >Zarezerwuj</button>
+        <button (click)="closePopWindow()" class="button" type="button" style="margin-right: 3px;" >Zamknij</button>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <h3 style="margin-bottom: 7px;">
+      Opis
+    </h3>
+    <p>{{rooms[0]['description']}}</p>
+    <button (click)="openPopWindow()" class="button" type="button" style="margin-right: 3px;" >Zarezerwuj</button>
+  </div>
+</main>
